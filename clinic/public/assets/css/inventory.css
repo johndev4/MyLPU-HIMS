@@ -1,0 +1,37 @@
+.inventory-header{
+    background-color: #a62d38 !important;
+    opacity: 0.95;
+    color: whitesmoke;
+}
+.button-color{
+    background-color:#04428b !important;
+    width: 120px; 
+}
+.button-color:hover{
+    background-color: #1a5496 !important;
+}
+
+/* Stock Management*/
+/* Batch Tab */
+a#custom-tabs-four-batch-tab.nav-link.active{
+    border-top-color: rgb(49, 99, 173) !important;
+    border-radius: 3px !important;
+    color: rgb(49, 99, 173) !important;
+  }
+  
+  a#custom-tabs-four-batch-tab.nav-link{
+    color: rgb(155, 155, 155) !important;
+    border-radius: 3px !important;
+  }
+
+/* Product Name */
+a#custom-tabs-four-productname-tab.nav-link.active{
+    border-top-color: rgb(49, 99, 173) !important;
+    border-radius: 3px !important;
+    color: rgb(49, 99, 173) !important;
+  }
+  
+  a#custom-tabs-four-productname-tab.nav-link{
+    color: rgb(155, 155, 155) !important;
+    border-radius: 3px !important;
+  }

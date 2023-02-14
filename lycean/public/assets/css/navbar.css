@@ -1,0 +1,104 @@
+.navbar-toggler-icon{
+    color: rgb(241, 241, 241) !important;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(241, 241, 241)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+  }
+
+button.navbar-toggler{
+    border-color: none !important;
+    border-style: none;
+  } 
+
+  /* .custom-toggler .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+  } */
+/* Top Nav */
+@media screen and (min-width: 768px) {
+    .notification {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .fas.fa-user-circle.fa-2x.text-light.mt-n1{
+    margin-left: 5px !important;
+    font-size: 16pt !important;
+  }
+  .far.fa-bell.fa-lg.text-light{
+    margin-left: 6px !important;
+    margin-right: 1px !important;
+    font-size: 16pt !important;
+  }
+  .dropdown-menu-xl {
+    min-width: 260px !important;
+    max-width: 700px !important;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  a.dropdown-item{
+    width:100% !important;
+  }
+}
+
+span.text-white.ml-1.uname{
+  vertical-align: top !important;
+  /* font-size: 15pt !important; */
+
+}
+/* Top Nav */
+
+/* Hide Default Nav 600 */
+@media screen and (max-width: 585px) {
+  div.row.p-3.default-nav{
+    display: none !important;
+  } 
+  div.col-12.default-nav{
+    display: none !important;
+  }
+}
+
+/* Hide Mobile Nav */
+@media screen and (min-width: 585px) {
+  div.col-4{
+    display: none !important;
+  }
+  div.col-md-6.hide{
+    display: none !important;
+  }
+}
+
+
+/* Test Notification DD*/
+.notifications-item {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 6px 9px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+i.fas.noti-icon.fa-lg::before{
+  display: block !important;
+  width: 50px !important;
+  height: 50px !important;
+  margin-right: 9px !important;
+  border-radius: 50% !important;
+  margin-top: 12px !important;
+  /* color: grey !important; */
+}
+
+a.dropdown-item:hover{
+  background-color: rgb(243, 243, 243) !important;
+}
+
+/* Adjust Margin mobile Nav Consult*/
+@media screen and (max-width: 585px) {
+  div.row.d-flex.justify-content-center{
+    margin-top: 50px !important;
+  }
+  div.col-md-6.hide{
+    margin-bottom: 15px !important;
+  }
+  div.row.consult-row{
+    margin-top: 50px !important;
+  }
+}

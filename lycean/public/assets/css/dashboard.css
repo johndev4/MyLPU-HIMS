@@ -1,0 +1,39 @@
+.card1{
+    border: 3px solid rgb(170, 170, 170) !important;
+    border-radius: 15px !important;
+}
+
+.card1{
+    transition: transform 0.2s ease !important;
+}
+
+.card1:hover {
+    transform: scale(1.1) !important;
+}
+
+body{
+    background: linear-gradient(110deg, #ffffff 60%, #e4e4e4 60%);
+}
+
+span.d-inline.font-weight-bold{
+    font-size: 30pt !important;
+}
+
+h2.d-inline.exclamation{
+    font-size: 30pt !important;
+}
+
+@media screen and (max-width:585px) {
+    span.d-inline.font-weight-bold{
+        font-size: 22pt !important ;
+    }
+    h2.d-inline.exclamation{
+        font-size: 22pt !important;
+    }
+    h1.d-inline.greeting{
+        font-size: 22pt !important;
+    }
+    div.mt-5.mb-5{
+        margin-bottom: 5px !important;
+    }
+}
