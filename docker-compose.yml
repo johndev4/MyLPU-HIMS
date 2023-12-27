@@ -1,0 +1,46 @@
+version: "3"
+services:
+  db:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=${MYSQL_ALLOW_EMPTY_PASSWORD}
+      - MYSQL_RANDOM_ROOT_PASSWORD=${MYSQL_RANDOM_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: unless-stopped
+    volumes:
+      - ./db_data:/usr/data
+    ports:
+      - 3307:3306
+  admin:
+    build:
+      context: .
+      dockerfile: projects/admin/docker/Dockerfile
+      args:
+        uid: ${HOST_UID}
+    environment:
+      - APACHE_RUN_USER=#${HOST_UID}
+      - APACHE_RUN_GROUP=#${HOST_UID}
+
+    volumes:
+      - ./public:/var/www/html/public
+      - ./apache_log:/var/log/apache2
+    ports:
+      - 8080:80
+    # depends_on:
+    #   - db
+    # links:
+    #   - db
+  test:
+    image: php:apache
+    ports:
+      - 8080:80
+    volumes:
+      - ./php/www:/var/www/html/
+
+volumes:
+  db_data:
+  src:
