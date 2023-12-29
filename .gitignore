@@ -1,0 +1,12 @@
+#-------------------------
+# Docker Files
+#-------------------------
+**/apache_log
+**/db_data
+
+#-------------------------
+# Environment Files
+#-------------------------
+# These should never be under version control,
+# as it poses a security risk.
+.env
