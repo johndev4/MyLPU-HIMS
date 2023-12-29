@@ -14,7 +14,7 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-CI_ENVIRONMENT = development
+# CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 # APP
@@ -39,10 +39,10 @@ app.sessionCookieName = 'mlhclinic_session'
 # DATABASE
 #--------------------------------------------------------------------
 
-database.default.hostname = localhost
+database.default.hostname = 10.5.0.11
 database.default.database = mylpuhims_db
 database.default.username = root
-database.default.password =
+database.default.password = passw0rd1
 # database.default.DBDriver = MySQLi
 # database.default.DBPrefix =
 

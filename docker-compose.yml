@@ -1,46 +1,103 @@
 version: "3"
 services:
   db:
+    container_name: db-server
     build:
       context: .
       dockerfile: infrastructure/docker/Dockerfile
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_ALLOW_EMPTY_PASSWORD=${MYSQL_ALLOW_EMPTY_PASSWORD}
-      - MYSQL_RANDOM_ROOT_PASSWORD=${MYSQL_RANDOM_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    env_file:
+      - .env
     command: --default-authentication-plugin=caching_sha2_password
     restart: unless-stopped
     volumes:
-      - ./db_data:/usr/data
-    ports:
-      - 3307:3306
+      - ./infrastructure/db_data:/usr/data
+    networks:
+      mylpuhims-network:
+        ipv4_address: 10.5.0.11
+    # ports:
+    #   - 3306:3306
+
   admin:
+    container_name: admin-servmylpuhims-networker
     build:
       context: .
       dockerfile: projects/admin/docker/Dockerfile
       args:
-        uid: ${HOST_UID}
-    environment:
-      - APACHE_RUN_USER=#${HOST_UID}
-      - APACHE_RUN_GROUP=#${HOST_UID}
-
+        - uid=${UID}
+    # environment:
+    #   - APACHE_RUN_USER=#${UID}
+    #   - APACHE_RUN_GROUP=#${UID}
+    env_file:
+      - .env
+    restart: unless-stopped
     volumes:
-      - ./public:/var/www/html/public
-      - ./apache_log:/var/log/apache2
+      - ./projects/admin:/var/www/html
+      - ./projects/admin/apache_log:/var/log/apache2
+    networks:
+      - mylpuhims-network
     ports:
-      - 8080:80
-    # depends_on:
-    #   - db
-    # links:
-    #   - db
-  test:
-    image: php:apache
-    ports:
-      - 8080:80
-    volumes:
-      - ./php/www:/var/www/html/
+      - 80:80
+    depends_on:
+      - db
+    links:
+      - db
 
-volumes:
-  db_data:
-  src:
+  clinic:
+    container_name: clinic-server
+    build:
+      context: .
+      dockerfile: projects/clinic/docker/Dockerfile
+      args:
+        - uid=${UID}
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - ./projects/clinic:/var/www/html
+      - ./projects/clinic/apache_log:/var/log/apache2
+    networks:
+      - mylpuhims-network
+    ports:
+      - 8081:80
+    depends_on:
+      - db
+    links:
+      - db
+
+  lycean:
+    container_name: lycean-server
+    build:
+      context: .
+      dockerfile: projects/lycean/docker/Dockerfile
+      args:
+        - uid=${UID}
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - ./projects/lycean:/var/www/html
+      - ./projects/lycean/apache_log:/var/log/apache2
+    networks:
+      mylpuhims-network:
+    ports:
+      - 8082:80
+    depends_on:
+      - db
+    links:
+      - db
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    networks:
+      - mylpuhims-network
+    ports:
+      - 8080:8080
+
+networks:
+  mylpuhims-network:
+    name: mylpuhims-network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
