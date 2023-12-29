@@ -22,9 +22,9 @@ RUN docker-php-ext-install \
     calendar \
     pdo_mysql \
     mysqli
-COPY projects/admin/docker/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY projects/admin/public/ /var/www/html/public/
-COPY projects/admin/ /var/www/html/
+COPY projects/lycean/docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY projects/lycean/public/ /var/www/html/public/
+COPY projects/lycean/ /var/www/html/
 COPY projects/vendor/ /var/www/vendor/
 RUN mv "$PHP_INI_DIR"/php.ini-development "$PHP_INI_DIR"/php.ini
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
@@ -38,4 +38,4 @@ RUN useradd -G www-data,root -u "$uid" -d /home/devuser devuser
 RUN mkdir -p /home/devuser/.composer && \
     chown -R devuser:devuser /home/devuser
 
-# EXPOSE 80
+# EXPOSE 8082
