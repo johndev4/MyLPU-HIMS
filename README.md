@@ -75,3 +75,46 @@ cd [path_of_client_side]
 ```
 php spark serve --port=[port_number]
 ```
+
+### Run in Docker containers:
+
+1. **Check out the 0002-dockerized branch first.**
+
+```
+git checkout 0002-dockerized
+```
+
+2. **Build image and create container using docker-compose up**
+
+```
+docker-compose up [service_name]
+```
+
+or without service name to compose all services in `docker-compose.yml`
+
+```
+docker-compose up
+```
+
+### Containerize database and use it on host Apache Server:
+
+1. **Uncomment the ports section in db service in docker-compose.yml**
+
+```
+ports:
+   - 3306:3306
+```
+
+2. **Change the database hostname on specific project's .env file (e.g. admin)**
+
+```
+database.default.hostname = localhost
+```
+
+3. **Build image and create container for the database**
+
+```
+docker-compose up db
+```
+
+4. Finally, setup and start Apache Server on host 
